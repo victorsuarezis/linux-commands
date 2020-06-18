@@ -323,7 +323,7 @@ $ neofetch
 Conocer ip publica:
 ```
 $ curl ipinfo.io/ip
-```    
+```
 
 Información detallada del equipo:
 ```
@@ -334,7 +334,7 @@ Información detallada del equipo:
 Fabricante del equipo:
 ```
 # dmidecode -s system-manufacturer
-```    
+```
 
 Fabricante del procesador:
 ```
@@ -393,7 +393,7 @@ $ ip a
 Consultar version:
 ```
 $ systemd --version
-```    
+```
 
 Calcular tiempos de arranque:
 ```
@@ -404,67 +404,67 @@ $ systemd-analyze blame
 Consultar servicios:
 ```
 $ systemctl list-unit-files
-```    
+```
 
 Consultar servicios iniciados:
 ```
 $ systemctl list-units
-```    
+```
 
 Activar servicio al iniciar sistema:
 ```
 # systemctl enable NOMBRE.service
-```    
+```
 
 Desactivar servicio al iniciar sistema:
 ```
 # systemctl disable NOMBRE.service
-```    
+```
 
 Iniciar servicio:
 ```
 # systemctl start NOMBRE.service
-```    
+```
 
 Detener servicio:
 ```
 # systemctl stop NOMBRE.service
-```    
+```
 
 Reiniciar servicio:
 ```
 # systemctl restart NOMBRE.service
-```    
+```
 
 Informacion de servicio:
 ```
 $ systemctl status NOMBRE.service
-```    
+```
 
 Recargar servicio:
 ```
 # systemctl reload NOMBRE.service
-```    
+```
 
 Evitar que un servicio se inicie (elimina el servicio de la lista):
 ```
 # systemctl mask NOMBRE.service
-```    
+```
 
 Desactivar mask:
 ```
 # systemctl unmask NOMBRE.service
-```    
+```
 
 Reiniciar systemd:
 ```
 # systemctl daemon-reload
-```    
+```
 
 Historial de servicio:
 ```
 $ journalctl -u NOMBRE.service
-```    
+```
 
 ## Variables de entorno
 
@@ -501,12 +501,12 @@ Revisión de puertos escuchas localmente (netstat se instala con `apt install ne
 Revisión de puestos escuchas TCP con nmap:
 ```
 # nmap -sT -O IP
-```    
+```
 
 Revisión de puestos escuchas TCP con nmap:
 ```
 # nmap -sU -O IP
-```    
+```
 
 Revisión de puestos escuchas con nmap:
 ```
@@ -631,6 +631,35 @@ $ ps -eF
 Matar proceso:
 ```
 $ kill IDPROCESO
+```
+
+## TAR GZ
+### .tar.gz
+ - Comprimir: 
+```bash
+tar -czvf empaquetado.tar.gz /carpeta/a/empaquetar/
+```
+- Descomprimir:
+```bash
+tar -xzvf archivo.tar.gz
+```
+### .tar
+- Empaquetar: 
+```bash
+tar -cvf paquete.tar /dir/a/comprimir/
+```
+- Desempaquetar: 
+```bash
+tar -xvf paquete.tar
+```
+### .gz
+- Comprimir: 
+```bash
+gzip -9 index.php
+```
+- Descomprimir:
+```bash
+gzip -d index.php.gz
 ```
 
 ## ZIP

@@ -1,19 +1,19 @@
 # Comandos para PostgreSQL
 
 #### Listar base de datos:
-```
+```shell
 $ psql -l
 ```
 
 #### Mostrar ayuda para backup:
-```
+```shell
 $ pg_dump -?
 $ pg_restore -?
 $ psql -?
 ```
 
 #### Backup tipo custom:
-```
+```shell
 $ pg_dump -i -h localhost -p 5432 -U postgres -F c -b -v -f "RUTA.backup" NOMBRE_BD
 
 -p, --port=PORT database server port number
@@ -31,7 +31,7 @@ $ pg_dump -i -h localhost -p 5432 -U postgres -F c -b -v -f "RUTA.backup" NOMBRE
 ```
 
 Restore tipo custom:
-```
+```shell
 $ pg_restore -i -v -h localhost -p 5432 -U postgres -d NOMBRE_BD "RUTA.backup"
 
 -p, --port=PORT database server port number
@@ -46,7 +46,7 @@ $ pg_restore -i -v -h localhost -p 5432 -U postgres -d NOMBRE_BD "RUTA.backup"
 
 ####  Restore tipo custom y crear DB:
 (creará la bd que se referencia dentro del backup y usa la bd postgres para conectarse):
-```
+```shell
 $ pg_restore -i -h localhost -p 5432 -U postgres -C -d postgres -v "RUTA.backup"
 
 -p, --port=PORT database server port number
@@ -60,7 +60,7 @@ $ pg_restore -i -h localhost -p 5432 -U postgres -C -d postgres -v "RUTA.backup"
 ```
 
 #### Backup tipo plain:
-```
+```shell
 $ pg_dump -i -h localhost -p 5432 -U postgres -F p -b -v -f "RUTA.sql" NOMBRE_BD
 
 -p, --port=PORT database server port number
@@ -78,7 +78,7 @@ $ pg_dump -i -h localhost -p 5432 -U postgres -F p -b -v -f "RUTA.sql" NOMBRE_BD
 ```
 
 #### Restore tipo plain:
-```
+```shell
 $ psql -h localhost -p 5432 -U postgres -d NOMBRE_BD -f "RUTA.backup"
 
 -p, --port=PORT database server port number
@@ -87,4 +87,9 @@ $ psql -h localhost -p 5432 -U postgres -d NOMBRE_BD -f "RUTA.backup"
 -W, --password force password prompt (should happen automatically)
 -d, --dbname=NAME connect to database name
 -f, --file file
+```
+
+#### Psql dmp
+```shell
+psql -h localhost -p 5432 -d NOMBRE_BD -U USUARIO -f archivo.dmp
 ```

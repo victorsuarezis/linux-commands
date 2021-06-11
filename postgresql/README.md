@@ -93,3 +93,24 @@ $ psql -h localhost -p 5432 -U postgres -d NOMBRE_BD -f "RUTA.backup"
 ```shell
 psql -h localhost -p 5432 -d NOMBRE_BD -U USUARIO -f archivo.dmp
 ```
+
+### Backup DMP iDempiere
+```shell
+pg_dump -h localhost -p 5432 --no-owner -U adempiere NAME_DATABASE > /opt/ExpDat.dmp 
+```
+Luego ubicarse en la carpeta del respaldo: cd /opt/ y comprimir con el comando: 
+```shell
+jar cvfM ExpDat.jar ExpDat.dmp
+```
+
+### ALTER ROLE
+El manejo de roles en PostgreSQL permite diferentes configuraciones, entre ellas estan:
+
+- SUPERUSER/NOSUPERUSER. Super usuario, privilegios para crear bases de datos y usuarios.
+- CREATEDB/NOCREATEDB. Permite crear bases de datos.
+- CREATEROLE/NOCREATEROLE. Permite crear roles.
+- CREATEUSER/NOCREATEUSER. Permite crear usuarios.
+- LOGIN/NOLOGIN. Este atributo hace la diferencia entre un rol y usuario. Ya que el usuario tiene permisos para acceder a la base de datos a traves de un cliente.
+- PASSWORD. Permite alterar la contraseña.
+- VALID UNTIL. Expiración de usuarios.
+**Ejemplo:** `ALTER ROLE nombre_usuario WITH LOGIN`

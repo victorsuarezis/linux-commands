@@ -89,21 +89,28 @@ $ psql -h localhost -p 5432 -U postgres -d NOMBRE_BD -f "RUTA.backup"
 -f, --file file
 ```
 
-#### Psql dmp
+#### Restore Psql dmp
 ```shell
 psql -h localhost -p 5432 -d NOMBRE_BD -U USUARIO -f archivo.dmp
 ```
 
-### Backup DMP iDempiere
+### Backup DMP
 ```shell
-pg_dump -h localhost -p 5432 --no-owner -U adempiere NAME_DATABASE > /opt/ExpDat.dmp 
+pg_dump -h localhost -p 5432 --no-owner -U USUARIO NAME_DATABASE > /opt/ExpDat.dmp 
 ```
 Luego ubicarse en la carpeta del respaldo: cd /opt/ y comprimir con el comando: 
 ```shell
 jar cvfM ExpDat.jar ExpDat.dmp
 ```
 
+### Descomprimir Jar
+
+```shell
+jar xfv ExpDat.jar
+```
+
 ### ALTER ROLE
+
 El manejo de roles en PostgreSQL permite diferentes configuraciones, entre ellas estan:
 
 - SUPERUSER/NOSUPERUSER. Super usuario, privilegios para crear bases de datos y usuarios.

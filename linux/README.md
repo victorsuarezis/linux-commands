@@ -689,6 +689,19 @@ Extraer zip en archivo:
 $ unzip NOMBRE.zip ARCHIVO
 ```
 
+## JAR
+
+### Descomprimir Jar
+
+```shell
+jar xfv catalina.jar
+```
+
+
+
+
+
+
 ## Observar (`watch`)
 
 Ejecutar un comando en cada `n` segundos:

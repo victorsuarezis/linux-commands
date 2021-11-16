@@ -121,3 +121,18 @@ El manejo de roles en PostgreSQL permite diferentes configuraciones, entre ellas
 - PASSWORD. Permite alterar la contraseña.
 - VALID UNTIL. Expiración de usuarios.
 **Ejemplo:** `ALTER ROLE nombre_usuario WITH LOGIN`
+
+## Agregar ***LIMIT*** a consultas dentro de codigo **iDempiere**
+### Declaracion
+```java
+private static final String NATIVE_MARKER = "NATIVE_"+Database.DB_POSTGRESQL+"_KEYWORK";
+```
+o
+```java
+private static final String NATIVE_MARKER = "NATIVE_PostgreSQL_KEYWORK";
+```
+
+### Implementacion
+```java
+String sql = "SELECT COLUMN FROM TABLE WHERE COLUMNA =? ORDER BY 1 DESC "+NATIVE_MARKER+"LIMIT 1"+NATIVE_MARKER;
+```

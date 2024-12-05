@@ -32,7 +32,7 @@ $ pg_dump -i -h localhost -p 5432 -U postgres -F c -b -v -f "RUTA.backup" NOMBRE
 
 Restore tipo custom:
 ```shell
-$ pg_restore -i -v -h localhost -p 5432 -U postgres -d NOMBRE_BD "RUTA.backup"
+$ pg_restore -v -h localhost -p 5432 -U postgres -d NOMBRE_BD "RUTA.backup"
 
 -p, --port=PORT database server port number
 -i, --ignore-version proceed even when server version mismatches
@@ -135,4 +135,72 @@ private static final String NATIVE_MARKER = "NATIVE_PostgreSQL_KEYWORK";
 ### Implementacion
 ```java
 String sql = "SELECT COLUMN FROM TABLE WHERE COLUMNA =? ORDER BY 1 DESC "+NATIVE_MARKER+"LIMIT 1"+NATIVE_MARKER;
+```
+
+
+Rol de lectura y escritura
+El proceso de agregar un rol de lectura/escritura es muy similar al proceso de rol de solo lectura que se trató anteriormente. El primer paso es crear un rol:
+
+```sql
+CREATE ROLE readwrite LOGIN;
+```
+
+Conceda permiso a este rol para conectarse a la base de datos de destino:
+```sql
+GRANT CONNECT ON DATABASE mydatabase TO readwrite;
+```
+
+Conceda privilegio de uso de esquemas:
+```sql
+GRANT USAGE ON SCHEMA myschema TO readwrite;
+```
+
+Si desea permitir que este rol cree nuevos objetos como tablas de este esquema, utilice el siguiente SQL en lugar del anterior:
+```sql
+GRANT USAGE, CREATE ON SCHEMA myschema TO readwrite;
+```
+
+El siguiente paso es conceder acceso a las tablas. Como se mencionó en la sección anterior, la concesión puede realizarse en tablas individuales o en todas las tablas del esquema. Para tablas individuales, utilice el siguiente SQL:
+```sql
+GRANT SELECT, INSERT, UPDATE, DELETE ON TABLE mytable1, mytable2 TO readwrite;
+```
+
+Para todas las tablas y vistas del esquema, utilice el siguiente SQL:
+```sql
+GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA myschema TO readwrite;
+```
+
+Para conceder automáticamente permisos sobre tablas y vistas añadidas en el futuro:
+```sql
+ALTER DEFAULT PRIVILEGES IN SCHEMA myschema GRANT SELECT, INSERT, UPDATE, DELETE ON TABLES TO readwrite;
+```
+
+Para los roles de lectura y escritura, normalmente existe el requisito de utilizar secuencias también. Puede dar acceso selectivo de la siguiente manera:
+```sql
+GRANT USAGE ON SEQUENCE myseq1, myseq2 TO readwrite;
+```
+
+También puede conceder permiso a todas las secuencias mediante la siguiente instrucción SQL:
+```sql
+GRANT USAGE ON ALL SEQUENCES IN SCHEMA myschema TO readwrite;
+```
+
+Para conceder permisos automáticamente a las secuencias añadidas en el futuro:
+```sql
+ALTER DEFAULT PRIVILEGES IN SCHEMA myschema GRANT USAGE ON SEQUENCES TO readwrite;
+```
+
+Puede conceder más o menos permisos en función de los requisitos. La documentación del comando GRANT de PostgreSQL proporciona más detalles sobre los objetos en los que se pueden conceder permisos y las sentencias SQL necesarias.
+
+Creación de usuarios de base de datos
+Con los roles implementados, se simplifica el proceso de creación de usuarios. Simplemente crea el usuario y concédele uno de los roles existentes. Estas son las instrucciones SQL para este proceso:
+```sql
+CREATE USER myuser1 WITH PASSWORD 'secret_passwd' LOGIN;
+GRANT readonly TO myuser1;
+```
+
+### CERRAR SESIONES ACTIVAS
+```sql
+SELECT pg_terminate_backend(pg_stat_activity.pid) FROM pg_stat_activity
+WHERE datname = 'myDataBase' AND pid <> pg_backend_pid();
 ```

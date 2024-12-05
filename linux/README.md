@@ -585,12 +585,12 @@ $ ssh -p PUERTO USUARIO@IP
 
 Tunel SSH:
 ```
-$ ssh -L PUERTOLOCAL:IPREMOTO:PUERTOREMOTO USUARIO@IPREMOTO
+$ ssh -L PUERTOLOCAL:LOCALHOST:PUERTOREMOTO USUARIO@IPREMOTO
 ```
 
 Tunel SSH con puerto:
 ```
-$ ssh -L PUERTOLOCAL:IPREMOTO:PUERTOREMOTO -p PUERTOSSH USUARIO@IPREMOTO
+$ ssh -L PUERTOLOCAL:LOCALHOST:PUERTOREMOTO -p PUERTOSSH USUARIO@IPREMOTO -f -N
 ```
 
 Generar y copiar clave pública SSH:
@@ -725,3 +725,15 @@ Cow Say:
 ```
 $ cowsay MENSAJE
 ```
+
+## Zona Horaria
+Cambiar Zona Horaria Servidor
+```
+$ rm /etc/localtime
+$ ln -s /usr/share/zoneinfo/Etc/GMT+6 /etc/localtime
+```
+Editar archivo /etc/timezone colocando Etc/GMT+6
+```
+$ nano /etc/timezone
+```
+

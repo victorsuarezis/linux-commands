@@ -737,3 +737,7 @@ Editar archivo /etc/timezone colocando Etc/GMT+6
 $ nano /etc/timezone
 ```
 
+## Rsync
+```
+$ rsync -e 'ssh -i key.pem' sop0rt3-tic@192.168.11.4:/proyectos/zresma_usr/zresma/reports /opt/Adempiere
+```

@@ -204,3 +204,13 @@ GRANT readonly TO myuser1;
 SELECT pg_terminate_backend(pg_stat_activity.pid) FROM pg_stat_activity
 WHERE datname = 'myDataBase' AND pid <> pg_backend_pid();
 ```
+
+### SQL para monitorear peso de Base de Datos
+```sql
+postgres=# SELECT pg_database.datname, pg_size_pretty(pg_database_size(pg_database.datname)) AS SIZE FROM pg_database;
+```
+
+### SQL para monitorear peso de Tablas en una Base de Datos
+```sql
+SELECT relname as "Table", pg_size_pretty(pg_total_relation_size(relid)) As "Size", pg_size_pretty(pg_total_relation_size(relid) - pg_relation_size(relid)) as "External Size" FROM pg_catalog.pg_statio_user_tables ORDER BY pg_total_relation_size(relid) DESC;
+```

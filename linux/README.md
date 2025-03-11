@@ -741,3 +741,21 @@ $ nano /etc/timezone
 ```
 $ rsync -e 'ssh -i key.pem' sop0rt3-tic@192.168.11.4:/proyectos/zresma_usr/zresma/reports /opt/Adempiere
 ```
+
+### growpart
+```
+sudo growpart /dev/xvda 1 (reemplaza /dev/xvda1 si es diferente).
+```
+
+### resize2fs
+```
+sudo resize2fs /dev/xvda1 (reemplaza /dev/xvda1 si es diferente).
+```
+
+### Aumentar el Almacenamiento para instancias EBS de AWS
+- Aumento de volumen EBS:
+El aumento del tamaño del volumen EBS en la consola de AWS es una operación en línea, lo que significa que no requiere detener la instancia.
+- Verifica el nuevo tamaño del volumen con `lsblk`
+- Extender la partición con `nvme0n1p1`, si el tamaño del Volumen es mayor
+- Extender el sistema de archivos ext4 con `resize2fs`
+- Verifica el cambio con `df -h`

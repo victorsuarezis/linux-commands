@@ -22,6 +22,12 @@ git clone https://github.com/sauljabin/cheatsheets.git ~/.config/cheat/cheatshee
 cheat -l -p personal
 ```
 
+### Update
+
+```sh
+cd ~/.config/cheat/cheatsheets/personal && git pull && cd -
+```
+
 ### Usage
 
 To view a cheatsheet:

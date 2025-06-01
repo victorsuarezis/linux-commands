@@ -2,7 +2,7 @@
 tags: [ alias ]
 ---
 # To install this aliases run: 
-# cheat alias > ~/.aliases && echo "source $HOME/.aliases" > ~/.zshrc
+# cheat alias > ~/.aliases && echo "source $HOME/.aliases" >> ~/.zshrc
 
 # To get docker process:
 alias dps='docker ps --format "table{{.Names}}\t{{.Status}}\t{{.ID}}"'

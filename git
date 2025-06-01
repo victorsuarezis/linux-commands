@@ -8,4 +8,4 @@ git rebase -i <hash-commit> -x "git commit --amend --reset-author -CHEAD"
 git log --all --full-history --patch -- "**/*<key word>*"
 
 # To restore a deleted file:
-git checkout <hash-commit where was deledted>^ -- <file path>
+git checkout <hash-commit where was deleted>^ -- <file path>

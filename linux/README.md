@@ -760,3 +760,8 @@ El aumento del tamaño del volumen EBS en la consola de AWS es una operación en
 - Extender la partición con `nvme0n1p1`, si el tamaño del Volumen es mayor
 - Extender el sistema de archivos ext4 con `resize2fs`
 - Verifica el cambio con `df -h`
+
+### Tree
+```
+tree /opt/Adempier/
+```

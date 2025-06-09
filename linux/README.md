@@ -763,5 +763,10 @@ El aumento del tamaño del volumen EBS en la consola de AWS es una operación en
 
 ### Tree
 ```
-tree /opt/Adempier/
+tree /opt/Adempiere/
+```
+### OpenSSL
+Verificar Certificados SSL
+```
+openssl s_client -connect tu-dominio.com:443 -showcerts
 ```

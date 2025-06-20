@@ -4,7 +4,7 @@ tags: [ alias ]
 # To install this aliases run: 
 # cheat alias > ~/.aliases && echo "source $HOME/.aliases" >> ~/.zshrc
 
-# To get docker process:
+# To get docker precesses:
 alias dps='docker ps --format "table{{.Names}}\t{{.Status}}\t{{.ID}}"'
 
 # To get docker processes including the stopped ones:
@@ -46,6 +46,9 @@ alias k="kubecolor"
 alias pbcopy="xsel --clipboard --input"
 alias pbpaste="xsel --clipboard --output"
 
+# To simplify lhctl:
+alias lh="lhctl"
+
 # To watch disk usage:
 wdisk() {
     watch -tc 'df -H | grep -vE "(tmpfs|loop|udev)"'
@@ -64,4 +67,9 @@ wwfrun() {
 # To watch LittleHorse TaskDef:
 wtaskdef() {
 	watch -ct 'echo "TASKS" && lhctl search taskDef | jq -r ".results[].name"'
+}
+
+# To watch docker precesses:
+wdps() {
+	watch -ct 'docker ps --format "table{{.Names}}\t{{.Status}}\t{{.ID}}"'
 }

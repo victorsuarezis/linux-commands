@@ -1,0 +1,24 @@
+---
+tags: [ kafka ]
+---
+# To install cli tools:
+brew install kafka
+
+# To create a topic:
+kafka-topics --create --bootstrap-server <server> \
+    --replication-factor 3 \
+    --partitions 3 \
+    --topic <topic name>
+
+# To delete a topic:
+kafka-topics --delete --bootstrap-server <server> \
+    --topic <topic name>
+
+# To list topics:
+kafka-topics --bootstrap-server <server> --list
+
+# To list Groups:
+kafka-consumer-groups --bootstrap-server <server> --list
+
+# To delete group:
+kafka-consumer-groups --bootstrap-server <server> --delete --group <group>

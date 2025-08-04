@@ -1,0 +1,75 @@
+---
+tags: [ alias ]
+---
+# To install this aliases run: 
+# cheat alias > ~/.aliases && echo "source $HOME/.aliases" >> ~/.zshrc
+
+# To get docker precesses:
+alias dps='docker ps --format "table{{.Names}}\t{{.Status}}\t{{.ID}}"'
+
+# To get docker processes including the stopped ones:
+alias dpa='docker ps -a --format "table{{.Names}}\t{{.Status}}\t{{.ID}}"'
+
+# To list docker volumes:
+alias dvl='docker volume ls'
+
+# To list docker images:
+alias dim='docker images --format "table{{.Repository}}:{{.Tag}}\t{{.Size}}"'
+
+# To get available ram:
+alias ram="free -h --giga | awk 'FNR==2{print \$7}'"
+
+# To get public ip:
+alias publicip='curl checkip.amazonaws.com'
+
+# To kill processes using port:
+alias killport='fuser -v -n tcp -k '
+
+# To get current directory:
+alias dir='basename $(pwd)'
+
+# To go up:
+alias cd..='cd ..'
+
+# To improve ls command:
+alias ls='eza'
+alias la='eza --long --all --group'
+
+# To improve tree command:
+alias tree='eza --tree'
+
+# To add color to kubectl:
+alias kubectl="kubecolor"
+alias k="kubecolor"
+
+# To copy and paste:
+alias pbcopy="xsel --clipboard --input"
+alias pbpaste="xsel --clipboard --output"
+
+# To simplify lhctl:
+alias lh="lhctl"
+
+# To watch disk usage:
+wdisk() {
+    watch -tc 'df -H | grep -vE "(tmpfs|loop|udev)"'
+}
+
+# To watch LittleHorse WfSpecs:
+wwfspec() {
+	watch -ct 'echo "WORKFLOWS" && lhctl search wfSpec | jq -r ".results[] | .name + ''\" v\"'' + (.majorVersion|tostring)+''\".\"''+(.revision|tostring)"'
+}
+
+# To watch LittleHorse WfRuns:
+wwfrun() {
+	watch -ct 'echo "WFRUN $1" && lhctl search wfRun --wfSpecName $1 | jq -r ".results[].id"'
+}
+
+# To watch LittleHorse TaskDef:
+wtaskdef() {
+	watch -ct 'echo "TASKS" && lhctl search taskDef | jq -r ".results[].name"'
+}
+
+# To watch docker precesses:
+wdps() {
+	watch -ct 'docker ps --format "table{{.Names}}\t{{.Status}}\t{{.ID}}"'
+}

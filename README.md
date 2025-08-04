@@ -19,9 +19,7 @@ Base de conocimientos sobre comandos linux en español.
 - [node](node)
 - [k8s](k8s)
 - [vagrant](vagrant)
-<<<<<<< HEAD
 - [screen](screen)
-=======
 - [sdkman](sdkman)
 - [graalvm](graalvm)
 - [ui](ui)
@@ -31,4 +29,3 @@ Base de conocimientos sobre comandos linux en español.
 - [vscode](vscode)
 - [ubuntu](ubuntu)
 - [brew](brew)
->>>>>>> f7fbddc1d99cf14ad182e2e9843bb139e11d23d7

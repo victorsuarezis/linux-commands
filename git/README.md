@@ -14,6 +14,7 @@ Usuario y correo:
 $ git config --global user.name "Saúl Piña"
 $ git config --global user.email "sauljabin@gmail.com"
 $ git config --global core.editor "vim"
+$ git config --global color.status "always"
 ```
 
 Listar configuración:
@@ -201,7 +202,7 @@ $ git push remoto ejemplo:master
 Subir tag (-f forzar):
 ```
 $ git push origin --tags
-(alias) & gpoat
+(alias) $ gpoat
 
 $ git push origin TAG
 $ git push REMOTO TAG
@@ -259,13 +260,13 @@ $ git push -f origin HEAD^:master
 Reinicia archivos en el wip:
 ```
 $ git checkout
-(alias) & gco
+(alias) $ gco
 ```
 
 Ir a branch o archivo:
 ```
 $ git checkout master
-(alias) & gcm
+(alias) $ gcm
 
 $ git checkout NOMBRE
 ```
@@ -301,16 +302,16 @@ $ git checkout -b NOMBRE origin/NOMBRE
 Crear branch:
 ```
 $ git branch NOMBRE
-(alias) & gb NOMBRE
+(alias) $ gb NOMBRE
 ```
 
 Listar branch:
 ```
 $ git branch
-(alias) & gb
+(alias) $ gb
 
 $ git branch -a (todas)
-(alias) & gba
+(alias) $ gba
 
 $ git branch -v
 ```
@@ -323,7 +324,7 @@ $ git branch -r
 Borrar rama:
 ```
 $ git branch -d NOMBRE
-(alias) & gbd NOMBRE
+(alias) $ gbd NOMBRE
 ```
 
 Borrar rama fusionada:
@@ -378,10 +379,10 @@ $ git remote prune origin
 Listar repos remotos:
 ```
 $ git remote
-(alias) & gr
+(alias) $ gr
 
 $ git remote -v
-(alias) & grv
+(alias) $ grv
 ```
 
 ### Tag
@@ -419,19 +420,19 @@ $ git clean -xfd
 Respaldar cambios en wip (Stash):
 ```
 $ git stash
-(alias) & gsta
+(alias) $ gsta
 ```
 
 Recuperar cambios del wip:
 ```
 $ git stash pop
-(alias) & gstp
+(alias) $ gstp
 ```
 
 Limpiar último stash:
 ```
 $ git stash drop
-(alias) & gstd
+(alias) $ gstd
 ```
 
 Limpiar stash:
@@ -450,13 +451,15 @@ $ git diff stash -- ARCHIVO
 Revisar cambios:
 ```
 $ git diff (para cambios no agregados)
-(alias) & gd
+(alias) $ gd
 
 $ git diff ARCHIVO
 
 $ git diff --staged (para cambios agregados)
+(alias) $ gds
+
 $ git diff --cached (para cambios agregados)
-(alias) & gdca
+(alias) $ gdca
 
 $ git diff HEAD~NUMERO ARCHIVO
 ```
@@ -482,7 +485,7 @@ $ git rm -r FOLDER
 Mostrar commit:
 ```
 $ git show
-(alias) & gsps
+(alias) $ gsps
 
 $ git show HEAD
 $ git show SHA
@@ -535,5 +538,10 @@ $ git apply -3 ARCHIVO
 Rebase: Situarse en la rama que va a fusionar
 ```
 $ git rebase BRANCH
-(alias) & grb BRANCH
+(alias) $ grb BRANCH
+```
+
+Cambiar autor de varios commits:
+```
+git rebase -i <hash-commit> -x "git commit --amend --reset-author -CHEAD"
 ```

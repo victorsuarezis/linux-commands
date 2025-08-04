@@ -15,21 +15,26 @@
 - `Ctrl+left`: mueve el cursor al inicio de la palabra anterior de la línea.
 - [Otros](https://picodotdev.github.io/blog-bitix/2016/06/atajos-de-teclado-basicos-de-la-terminal-en-gnu-linux/)
 
-#### Cheat (https://www.putorius.net/linux-cheat-sheets.html):
-```
-$ sudo snap install cheat
-$ cheat.cheatsheet-setup
-```
+### Configurar editor de texto en terminal:
 
 Agregar variable de entorno a `~/.zshrc`:
 ```
 export EDITOR=vim
 ```
 
-#### Sdkman (https://sdkman.io/install):
+#### Cheat (https://www.putorius.net/linux-cheat-sheets.html):
+
+Instalar:
 ```
-$ curl -s "https://get.sdkman.io" | bash
+$ sudo snap install cheat
 ```
+
+Uso:
+```
+$ cheat COMANDO
+```
+
+> Ejemplo `cheat ssh`
 
 ## Comandos generales
 
@@ -371,10 +376,11 @@ $ lsblk
 Mostrar información:
 ```
 $ lscpu   (cpu)
-$ nproc (número de procesadores)
+$ nproc   (número de procesadores)
 $ lsblk   (dispositivos)
 $ lsusb   (buses usb)
 $ lsmod   (módulos del kernel)
+$ free -h (memoria ram)
 ```
 
 Informacion del sistema:
@@ -759,3 +765,47 @@ El aumento del tamaño del volumen EBS en la consola de AWS es una operación en
 - Extender la partición con `nvme0n1p1`, si el tamaño del Volumen es mayor
 - Extender el sistema de archivos ext4 con `resize2fs`
 - Verifica el cambio con `df -h`
+=======
+## Generar valores
+
+Generar un número entero aleatorio:
+```
+$ shuf -i 1-10 -n 1 (del 1 al 10)
+```
+
+Generar un UUID random:
+```
+$ uuidgen
+```
+
+Generar md5:
+```
+$ echo -n "hola" | md5sum
+```
+
+Generar md5 de binario:
+```
+$ md5sum RUTAARCHIVO
+```
+
+Generar sha256 de binario:
+```
+$ sha256sum RUTAARCHIVO
+```
+
+Generar base64:
+```
+$ base64 -w0 RUTAARCHIVO 
+```
+
+## Mardown
+
+Instalar `glow`:
+```
+$ sudo snap install glow
+```
+
+Leer archivo markdown:
+```
+$ glow RUTAARCHIVO
+```

@@ -4,28 +4,30 @@
 $ sudo apt install tmux
 ```
 
-Agregar variable de entorno al principio del archivo `vim ~/.zshrc`:
+o
+
 ```
-[[ $TERM != "screen" ]] && exec tmux
+$ brew install tmux
+```
+
+Agregar variable de entorno al principio del archivo `vim ~/.zshrc`:
+```bash
+[[ "$TERM_PROGRAM" != "vscode" ]] && [[ "$TERMINAL_EMULATOR" != "JetBrains-JediTerm" ]] && [[ "$TERM" != "screen" ]] && [[ -z "$TMUX" ]] && exec tmux
 export TERM="xterm-256color"
 ```
 
-## Tema
-
-- https://github.com/jimeh/tmux-themepack
-- https://github.com/tmux-plugins/tpm
+### Instalar manejador de plugins
 
 Clonar:
 ```
 $ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ```
 
-Configurar tmux `vim ~/.tmux.conf`:
-```
-set-option -g prefix C-x
+Configurar tmux `vi ~/.tmux.conf`:
+```bash
+set -g prefix C-Space
+set -g default-shell /bin/zsh
 set -g @plugin 'tmux-plugins/tpm'
-set -g @plugin 'jimeh/tmux-themepack'
-set -g @themepack 'powerline/default/blue'
 run -b '~/.tmux/plugins/tpm/tpm'
 ```
 
@@ -39,19 +41,78 @@ Activar/Actualizar plugins:
 Prefijo + I
 ```
 
+### Temas
+
 Instalar fuentes desde [nerd-fonts](https://github.com/romkatv/nerd-fonts):
 
 ```
-$ git clone --depth=1 https://github.com/romkatv/nerd-fonts.git ~/.nerd-fonts
+$ git clone https://github.com/romkatv/nerd-fonts.git ~/.nerd-fonts
 $ cd ~/.nerd-fonts
 $ ./install.sh
+```
+
+Configurar [tmux-themepack](https://github.com/jimeh/tmux-themepack) tmux `vim ~/.tmux.conf`:
+
+```bash
+...
+set -g @plugin 'jimeh/tmux-themepack'
+set -g @themepack 'powerline/default/blue'
+...
+```
+
+Configurar [tmux-power](https://github.com/wfxr/tmux-power) tmux `vim ~/.tmux.conf`:
+
+```bash
+...
+set -g @plugin 'wfxr/tmux-power'
+set -g @tmux_power_theme 'default'
+...
+```
+
+Configurar [dracula](https://github.com/dracula/tmux) tmux `vim ~/.tmux.conf`:
+
+```bash
+...
+set -g @plugin 'dracula/tmux'
+set -g @dracula-plugins "battery network cpu-usage ram-usage time"
+set -g @dracula-show-left-icon session
+set -g @dracula-military-time true
+...
+```
+
+### Configuración mouse
+
+Linux:
+
+```bash
+sudo apt install xclip
+```
+
+Abrir `vim ~/.tmux.conf`:
+
+```bash
+...
+set -g mouse on
+set -s set-clipboard off
+bind-key -T copy-mode MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel "xclip -selection clipboard -i"
+...
+```
+
+o mac:
+
+```bash
+...
+set -g mouse on
+set -s set-clipboard off
+bind-key -T copy-mode MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel "pbcopy"
+...
 ```
 
 ## Comandos
 
 Prefijo:
 ```
-Ctrl + x (default Ctrl + b)
+Ctrl + Space (default Ctrl + b)
 ```
 
 ### Paneles
@@ -175,4 +236,21 @@ Prefijo + )
 Mostrar/Eligir sesiones:
 ```
 Prefijo + s
+```
+
+### Otros comandos
+
+Matar todo tmux:
+```
+$ tmux kill-server
+```
+
+Listar sesiones:
+```
+$ tmux list-sessions
+```
+
+Matar todas las sesiones menos la actual:
+```
+$ tmux kill-session -a
 ```

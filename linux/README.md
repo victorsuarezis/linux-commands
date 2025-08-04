@@ -703,11 +703,6 @@ $ unzip NOMBRE.zip ARCHIVO
 jar xfv catalina.jar
 ```
 
-
-
-
-
-
 ## Observar (`watch`)
 
 Ejecutar un comando en cada `n` segundos:
@@ -746,6 +741,7 @@ $ nano /etc/timezone
 ## Rsync
 ```
 $ rsync -e 'ssh -i key.pem' sop0rt3-tic@192.168.11.4:/proyectos/zresma_usr/zresma/reports /opt/Adempiere
+$ rsync -avz -e 'ssh -i key.pem' sop0rt3-tic@192.168.11.4:/proyectos/zresma_usr/zresma/reports /opt/Adempiere
 ```
 
 ### growpart
@@ -765,7 +761,7 @@ El aumento del tamaño del volumen EBS en la consola de AWS es una operación en
 - Extender la partición con `nvme0n1p1`, si el tamaño del Volumen es mayor
 - Extender el sistema de archivos ext4 con `resize2fs`
 - Verifica el cambio con `df -h`
-=======
+
 ## Generar valores
 
 Generar un número entero aleatorio:
@@ -808,4 +804,15 @@ $ sudo snap install glow
 Leer archivo markdown:
 ```
 $ glow RUTAARCHIVO
+=======
+
+### Tree
+```
+tree /opt/Adempiere/
+
+```
+### OpenSSL
+Verificar Certificados SSL
+```
+openssl s_client -connect tu-dominio.com:443 -showcerts
 ```

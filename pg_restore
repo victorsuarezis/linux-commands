@@ -1,0 +1,30 @@
+---
+tags: [ database ]
+---
+Restore tipo custom:
+```shell
+$ pg_restore -v -h localhost -p 5432 -U postgres -d NOMBRE_BD "RUTA.backup"
+
+-p, --port=PORT database server port number
+-i, --ignore-version proceed even when server version mismatches
+-h, --host=HOSTNAME database server host or socket directory
+-U, --username=NAME connect as specified database user
+-W, --password force password prompt (should happen automatically)
+-d, --dbname=NAME connect to database name
+-v, --verbose verbose mode
+```
+
+
+####  Restore tipo custom y crear DB:
+(creará la bd que se referencia dentro del backup y usa la bd postgres para conectarse):
+```shell
+$ pg_restore -i -h localhost -p 5432 -U postgres -C -d postgres -v "RUTA.backup"
+
+-p, --port=PORT database server port number
+-i, --ignore-version proceed even when server version mismatches
+-h, --host=HOSTNAME database server host or socket directory
+-U, --username=NAME connect as specified database user
+-W, --password force password prompt (should happen automatically)
+-d, --dbname=NAME connect to database name
+-v, --verbose verbose mode
+-C, --create Create database
